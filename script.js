@@ -40,10 +40,21 @@ function cpuTurn(){
 */
 function findWinner(u,c){
     let winner = "I";
-    if (u == "r") winner = "You";
-        
+    if (u == "r") {
+        if (c == "s") winner = "Player ";
+        else winner = "Computer ";
+    }
+    else if (u == "s") {
+        if (c == "p") winner = "Player ";
+        else winner = "Computer ";
+    }
+    else {
+        if (c == "r") winner = "Player ";
+        else winner = "Computer ";
+    }
+    alert("I chose "+c+", and you chose "+u+". "+winner+"wins!");
+    }
 
-    alert("You picked" +u+ "and I picked" +c+ ". " +winner+ " won that round.");
+
     
 
-}
