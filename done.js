@@ -1,43 +1,53 @@
-
+var moves = ["r","p","s"];
+/*main*/
 function main(){
-    let pChoice = 0;
+    let uChoice = 0;
     let cChoice = 0;
-    while (pChoice == cChoice){
-        pChoice = userTurn();
+    while (uChoice == cChoice){
+        uChoice = userTurn();
         cChoice = cpuTurn();
-        if (pChoice == cChoice) alert("Tie");
+        if (uChoice == cChoice){
+            alert("We both chose " +cChoice);
+        }
     }
-    findWinner(pChoice,cChoice);
+    findWinner(uChoice,cChoice);
 }
+/*userTurn
+* @param: none
+* @return: string(r,p, or s)
+*/
 function userTurn(){
-    let pChoice = prompt("Choose between r, p, and c");
-    if (pChoice == "r" || pChoice == "p" || pChoice == "c") return (pChoice);
-    else{
-        alert("Bad input");
-        userTurn();
-    } 
+    let choice = prompt("Enter r, p or s.");
+    if (moves.includes(choice)){
+        return choice;
+    }
+    else return userTurn();
 }
+
+/*cpuTurn
+* @param: none
+* @return: string (r,p, or s)
+*/
 function cpuTurn(){
-    let cpuChoice = 0;
     let choice = Math.floor(Math.random()*2);
-    if (choice == 0) cpuChoice = "r";
-    else if (choice == 1) cpuChoice = "p";
-    else if (choice == 2) cpuChoice = "s";
-    return cpuChoice;
+    return moves[choice];
 }
-function findWinner(p,c){
-    let winner = "Something went wrong";
-    if (p == "r") {
-        if (c == s) winner = "Player";
-        else winner = "Computer";
+
+/*findWinner
+* @param: u (srting), c (string)
+* @return: none 
+*/
+function findWinner(u,c){
+    let winArray=[
+        ["r","p","I"],["r","s","you"], ["p","s","I"],["p","r","you"], ["s","r","I"],["s","p","you"]];
+    for(let i = 0; i < winArray.length; i++){
+        if (winArray[i][0] == u && winArray[i][1] == c){
+            winner = winArray[i][2];
+        }
     }
-    else if (r == s){
-        if (c == p) winner = "Player";
-        else winner = "Computer";
+    alert("I chose " +c+ ", and you chose " +u+ " . " + winner + " win!");
     }
-    else{
-        if (c == r) winner = "Player";
-        else winner = "Computer";
-    }
-    alert(winner+"Wins!");
-}
+
+
+    
+
