@@ -1,16 +1,37 @@
+var score = [0,0];
 var moves = ["r","p","s"];
 /*main*/
 function main(){
+    let winner = 3;
+    let rounds = setRounds();
+    for (let round =1; round <= rounds; round++) {
+        winner = rpsRound();
+        score[winner]++
+    }
+    alert("You have "+score[0]+"and I have " +score[1]);
+    if (score[0] > score[1]) alert("You win!");
+    else alert("I win!");
+}
+function rpsRound(){
     let uChoice = 0;
     let cChoice = 0;
     while (uChoice == cChoice){
         uChoice = userTurn();
         cChoice = cpuTurn();
         if (uChoice == cChoice){
-            alert("We both chose " +cChoice);
+            alert("We both chose" +cChoice);
         }
     }
     findWinner(uChoice,cChoice);
+}
+function setRounds(){
+    let rounds = prompt("How many rounds?");
+    if (rounds % 2 == 0){
+         alert("Must be odd");
+         return setRounds();
+    }
+    else return rounds;
+
 }
 /*userTurn
 * @param: none
@@ -29,7 +50,7 @@ function userTurn(){
 * @return: string (r,p, or s)
 */
 function cpuTurn(){
-    let choice = Math.floor(Math.random()*2);
+    let choice = Math.floor(Math.random()*3);
     return moves[choice];
 }
 
