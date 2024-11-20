@@ -8,7 +8,7 @@ function main(){
         winner = rpsRound();
         score[winner]++
     }
-    alert("You have "+score[0]+"and I have " +score[1]);
+    alert("You have "+score[0]+" and I have " +score[1]);
     if (score[0] > score[1]) alert("You win!");
     else alert("I win!");
 }
@@ -19,11 +19,15 @@ function rpsRound(){
         uChoice = userTurn();
         cChoice = cpuTurn();
         if (uChoice == cChoice){
-            alert("We both chose" +cChoice);
+            alert("We both chose " +cChoice);
         }
     }
-    findWinner(uChoice,cChoice);
+    let winner = findWinner(uChoice,cChoice);
+    let players = ["you", "I"];
+    let win = players.indexOf(winner);
+    return win;
 }
+
 function setRounds(){
     let rounds = prompt("How many rounds?");
     if (rounds % 2 == 0){
@@ -67,7 +71,8 @@ function findWinner(u,c){
         }
     }
     alert("I chose " +c+ ", and you chose " +u+ " . " + winner + " win!");
-    }
+    return winner;
+}   
 
 
     
